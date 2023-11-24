@@ -374,3 +374,17 @@
     }
 }
 
+@media only screen and (max-width: 400px) {
+    .primaryBtn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .primaryBtn {
+        padding: 8px 5px;
+        font-size: 0.7rem;
+    }
+}
+

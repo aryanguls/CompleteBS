@@ -30,7 +30,7 @@ def ask_gpt():
                     "content": f"{user_input}"
                 }
             ],
-            max_tokens=60,
+            max_tokens=4000,
             temperature=0.7,
             presence_penalty=0.15,
             frequency_penalty=0.20
