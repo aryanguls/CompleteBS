@@ -1,0 +1,376 @@
+.navContainer {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.logoIcon {
+    height: 33px;
+    width: 33px;
+    margin-right: 8px;
+    border-radius: 10px;
+}
+
+.brandName {
+    font-weight: 600;
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.navLinks a {
+    margin-left: 35px;
+    font-weight: 400;
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.navLinks a:hover {
+    color: #ff8e00;
+}
+
+.mainContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 78vh;
+}
+
+.contentContainer {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.intro {
+    width: 44%;
+    margin-right: 30px;
+    margin-top: 60px;
+}
+
+.highlightText {
+    padding-bottom: 0;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    display: block;
+    background: linear-gradient(90deg, #ff5f00,#ffc300);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 40px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    color: #ffffff;
+    background: none; /* Clear background in case it inherits the gradient */
+}
+
+.coloredtext {
+    color: #ff8e00
+}
+
+.intro p {
+    color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 60px;
+}
+
+.btnGroup {
+    display: flex;
+    gap: 30px;
+}
+
+.primaryBtn {
+    font-family: Poppins, 'sans-serif';
+    font-weight: 500;
+    background-color: #ff8e00;
+    color: rgb(255, 255, 255);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.primaryBtn:hover {
+    background-color: #ff8e00;
+    transform: scale(1.05);
+}
+
+.graphicContainer {
+    width: 62%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+    margin-left: 70px;
+}
+
+.mainGraphic {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #b8b8b8;
+    border-radius: 2px;
+}
+
+/* Dropdown Active Styles */
+.nav-links.active {
+    display: flex;
+    position: absolute;
+    top: 70px;
+    right: 5%;
+    background-color: #ffffff;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.nav-links.active a {
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.navContainer {
+    position: relative;
+  }
+  
+  .navLinksActive {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* adjust as necessary */
+    right: 0; /* adjust as necessary */
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+  }
+  
+  .navLinksActive a {
+    text-align: center;
+    margin: 5px 15px;
+    color: #ffffff;
+  }
+
+  .navLinksActive a:hover {
+    color: #ff8e00; 
+    text-decoration: none;
+}
+
+/* Adjusted media queries with camelCased selectors */
+@media only screen and (max-width: 1400px) {
+    .intro h1 {
+        font-size: 4.4rem;
+    }
+
+    .intro p {
+        font-size: 1.3rem;
+    }
+
+    .primaryBtn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .graphicContainer{
+        margin-top: 65px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .intro h1 {
+        font-size: 3.4rem;
+    }
+
+    .intro p {
+        font-size: 1.2rem;
+    }
+
+    .primaryBtn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .graphicContainer{
+        margin-top: 65px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .intro h1 {
+        font-size: 2.9rem;
+    }
+
+    .intro p {
+        font-size: 1.1rem;
+    }
+
+    .primaryBtn {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+
+    .graphicContainer{
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .navContainer {
+        width: 80%;
+        flex-direction: row;
+    }
+
+    .contentContainer {
+        width: 80%;
+        flex-direction: column;
+        text-align: center; 
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .mainContent {
+        flex-direction: column-reverse;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .intro, .graphicContainer {
+        width: 100%;
+    }
+
+    .intro {
+        margin-top: 50px;
+        margin-bottom: 40px;
+        margin-right: 0px;
+    }
+
+    .intro h1 {
+        font-size: 2.5rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+
+    .btnGroup {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .primaryBtn {
+        width: 35%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+
+    .graphicContainer {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .intro{
+        margin-right: 0px;
+    }
+    .primaryBtn {
+        width: 35%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        font-size: 0.85rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .brandName {
+        font-size: 24px;
+    }
+
+    .logoIcon {
+        height: 35px;
+        width: 35px;
+    }
+
+    .intro h1 {
+        font-size: 2rem;
+    }
+
+    .intro p {
+        font-size: 0.9rem;
+    }
+
+    .primaryBtn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+}
+

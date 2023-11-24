@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.navContainer {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.logoIcon {
+    height: 33px;
+    width: 33px;
+    margin-right: 8px;
+    border-radius: 10px;
+}
+
+.brandName {
+    font-weight: 600;
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.authContainer {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 93vh;
+    text-align: center;
+    width: 100%; /* to ensure it takes up the full viewport width */
+    box-sizing: border-box; /* to make sure padding and border are included in width */
+}
+
+.authCard {
+    background-color: #272339;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+    box-sizing: border-box; /* ensures padding is included in the width */
+}
+
+.authCard h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.authInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box; /* ensures padding is included in the width */
+}
+
+.authInput::placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+.authInput:focus {
+    outline: none;
+}
+
+.authButton {
+    width: 50%; /* reduced width */
+    padding: 8px 10px;
+    background-color: #ff8e00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin: 30px 0;
+    cursor: pointer;
+    display: block; /* makes the button a block element */
+    margin-left: auto; /* centers the button */
+    margin-right: auto;
+    transition: transform 0.3s ease; /* smooth transition for the scale effect */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.authButton:hover {
+    transform: scale(1.05); /* 5% larger on hover */
+}
+
+.loginLink {
+    color: #fff;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure it's above other elements */
+}
+  
+.popupContent {
+    background: #333;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    width: 80%;
+    max-width: 350px;
+    display: flex; /* Add flex display */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+}
+  
+.close {
+    position: absolute;
+    color: #fff;
+    top: 10px;
+    bottom: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+  
+.popupText {
+    color: red;
+    margin-top: 0; /* Adjust margin to align close button and text properly */
+    margin-bottom: 0;
+}
+  
+
+#gSignin2 {
+    width: 100%;
+}
+
+#gSignin2 div {
+    margin: 0 auto;
+}
+
+/* Base mobile styles */
+@media (max-width: 450px) {
+    .brandName {
+        display: none; /* Hide the brand text on small screens */
+    }
+
+    .authCard {
+        width: 90%; /* Make the authCard responsive on small screens */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .authCard h1 {
+        font-size: 1.5rem; /* Smaller heading */
+    }
+
+    .authInput {
+        font-size: 0.9rem; /* Smaller text in input fields */
+        padding: 8px; /* Reduce padding */
+    }
+
+    .authButton {
+        padding: 6px 8px; /* Smaller button padding */
+        width: 60%; /* Adjust width if necessary */
+        font-size: 0.9rem;
+    }
+
+    .popupContent {
+        width: 90%; /* Make popup responsive */
+    }
+
+    .loginLink span {
+        font-size: 0.9rem; /* Smaller font size for the login link on mobile */
+    }
+}
+
+/* Media query for devices with width up to 400 pixels */
+@media (max-width: 350px) {
+    .authCard {
+        width: 90%; /* Make the authCard responsive on small screens */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .authCard h1 {
+        font-size: 1.1rem; /* Smaller heading */
+    }
+
+    .authInput {
+        font-size: 0.8rem; /* Smaller text in input fields */
+        padding: 8px; /* Reduce padding */
+    }
+
+    .authButton {
+        padding: 6px 8px; /* Smaller button padding */
+        width: 50%; /* Adjust width if necessary */
+        font-size: 0.8rem;
+    }
+
+    .popupContent {
+        width: 90%; /* Make popup responsive */
+        font-size: 0.8rem;
+    }
+
+    .close{
+        top: 8px;
+    }
+
+    .loginLink span {
+        font-size: 0.8rem; /* Smaller font size for the login link on mobile */
+    }
+}

@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.navContainer {
+    width: 100%; /* Take full width */
+    max-width: 1280px;
+    margin: 0 auto; /* This will center the container horizontally */
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+    align-items: center;
+    flex-direction: row;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.logoIcon {
+    height: 40px;
+    width: 40px;
+    margin-right: 8px;
+    border-radius: 10px;
+}
+
+.brandName {
+    font-weight: 600;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.chatContentContainer {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    height: calc(100vh - 120px); /* Adjust this value based on the actual space you want your chat container to occupy */
+    overflow-y: hidden; /* Prevent scroll on the container */
+}
+
+.chatContent {
+    height: calc(100% - 60px); /* Leave enough space for the input field */
+    overflow-y: auto; /* Ensures that this section is scrollable */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    padding: 0 10px 10px 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+}
+
+.textInput {
+    flex-grow: 1;
+    min-height: 40px; /* you can adjust as per your needs */
+    max-height: 100px; /* you can adjust as per your needs */
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: white;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* consider changing to 'auto' if you want scroll */
+    overflow-wrap: break-word;
+    resize: none; /* consider removing if you want users to be able to resize the input */
+}
+
+.iconButton {
+    width: 30px; /* you can adjust as per your needs */
+    height: 30px; /* you can adjust as per your needs */
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.centeredContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* this assumes your chatContentContainer is taking full height */
+}
+
+.logo {
+    width: 50px; /* or whatever your logo's width should be */
+    border-radius: 12px;
+    height: auto;
+    margin-bottom: 10px; /* adjust as necessary */
+}
+
+.centeredText {
+    color: gray;
+    font-size: 1rem; /* adjust as necessary */
+    text-align: center;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: flex-start; /* Align messages to the left */
+    border-bottom: 1px solid lightgray; /* Add a grey line between messages */
+    padding-bottom: 10px; /* Add padding to the bottom of messages */
+}
+
+.user p, .bot p {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.user p {
+    background-color: #cce7ff;
+}
+
+.bot p {
+    background-color: #ffac47;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.user .icon {
+    margin-right: 10px;
+}
+
+.bot .icon {
+    margin-right: 10px;
+}
+
+.promptOptions {
+    /* Styles for the container of the prompt buttons */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.promptOption {
+    /* Styles for each prompt button */
+    background-color: #f3f3f3; /* Light gray background */
+    border: 1px solid #d1d1d1; /* Gray border */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.typingBubble {
+    background-color: #ffac47;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typingIndicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typingIndicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #333; /* Adjust the color to suit your design */
+    margin: 0 3px;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+@keyframes typing {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Add this media query */
+@media (max-width: 1280px) {
+    .chatContentContainer {
+        width: 80%;
+        margin-left: auto; /* Center align */
+        margin-right: auto; /* Center align */
+    }
+}
+
+/* Add this media query */
+@media (max-width: 1025px) {
+    .chatContentContainer {
+        width: 90%;
+        margin-left: auto; /* Center align */
+        margin-right: auto; /* Center align */
+    }
+}
+
+/* Add this media query */
+@media (max-width: 600px) {
+    .chatContentContainer {
+        width: 95%;
+        font-size: 0.8rem;
+    }
+
+    .centeredText {
+        font-size: 0.8rem;
+    }
+}
+
+/* Add this media query */
+@media (max-width: 400px) {
+    .chatContentContainer {
+        width: 95%;
+        font-size: 0.7rem;
+        padding: 0px;
+    }
+
+    .centeredText {
+        font-size: 0.9rem;
+    }
+
+    .logoIcon {
+        height: 30px;
+        width: 30px;
+    }
+
+    .icon{
+        width: 25px;
+        height: 25px;
+    }
+
+    .iconButton {
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo {
+        width: 35px;
+    }
+}
+
+@media (max-width: 300px) {
+    .centeredText {
+        font-size: 0.7rem;
+    }
+
+    .logoIcon {
+        height: 25px;
+        width: 25px;
+    }
+
+    .brandName {
+        font-size: 1.5rem;
+    }
+
+    .inputContainer {
+        padding: 0px;
+    }
+
+    .icon{
+        width: 20px;
+        height: 20px;
+    }
+
+    .iconButton {
+        width: 27px;
+        height: 27px;
+    }
+}
