@@ -37,28 +37,48 @@ const Chatbot: React.FC = () => {
 
     const [isBotTyping, setIsBotTyping] = useState(false);
 
-    const handlePromptSelect = (prompt: string) => {
-        // Set the input text to the selected prompt
-        setInputText(prompt);
+    const fetchBotResponse = async (userInput: string) => {
+        setIsBotTyping(true); // Show typing indicator
     
-        // Add user message from prompt
-        setMessages(prevMessages => [...prevMessages, { id: Date.now(), sender: 'user', text: prompt }]);
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ask-gpt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input: userInput }),
+            });
     
-        // Clear the input field after sending
-        setInputText('');
-    
-        // Add temporary typing indicator message
+            if (response.ok) {
+                const data = await response.json();
+                setIsBotTyping(false); // Hide typing indicator
+                return data.response;
+            } else {
+                throw new Error('Failed to fetch response from the server');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setIsBotTyping(false); // Hide typing indicator in case of error
+            return 'Sorry, there was an error.';
+        }
+    };
+
+    const handlePromptSelect = async (prompt: string) => {
         setMessages(prevMessages => [
             ...prevMessages, 
-            { id: Date.now(), sender: 'bot', text: '', isTyping: true }
+            { id: Date.now(), sender: 'user', text: prompt }
         ]);
     
-        // Replace typing indicator with actual response after a delay
-        setTimeout(() => {
-            setMessages(prevMessages => prevMessages.map(msg => 
-                msg.isTyping ? { ...msg, text: 'Hello, this is a placeholder response!', isTyping: false } : msg
-            ));
-        }, 1000); // Adjust the delay as needed
+        setIsBotTyping(true);  // Show typing indicator
+    
+        const botResponseText = await fetchBotResponse(prompt);
+    
+        setIsBotTyping(false);  // Hide typing indicator
+    
+        setMessages(prevMessages => [
+            ...prevMessages, 
+            { id: Date.now(), sender: 'bot', text: botResponseText || "Sorry, I couldn't understand that." }
+        ]);
     };
     
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,29 +89,26 @@ const Chatbot: React.FC = () => {
 
     const chatContentRef = useRef<HTMLDivElement | null>(null);
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (inputText.trim() !== '') {
-            // Add user message from input
-            setMessages(prevMessages => [
-                ...prevMessages, 
-                { id: Date.now(), sender: 'user', text: inputText }
-            ]);
+            const userMessage = { id: Date.now(), sender: 'user', text: inputText };
+            setMessages(prevMessages => [...prevMessages, userMessage]);
             setInputText('');
     
-            // Add temporary typing indicator message
-            setMessages(prevMessages => [
-                ...prevMessages, 
-                { id: Date.now(), sender: 'bot', text: '', isTyping: true }
-            ]);
+            setIsBotTyping(true);  // Show typing indicator
     
-            // Replace typing indicator with actual response after a delay
-            setTimeout(() => {
-                setMessages(prevMessages => prevMessages.map(msg => 
-                    msg.isTyping ? { ...msg, text: 'Hello, this is a placeholder response!', isTyping: false } : msg
-                ));
-            }, 1000);
+            const botResponseText = await fetchBotResponse(inputText);
+    
+            setIsBotTyping(false);  // Hide typing indicator
+    
+            setMessages(prevMessages => [
+                ...prevMessages.filter(msg => msg.id !== userMessage.id || msg.sender !== 'bot'), 
+                { id: Date.now(), sender: 'bot', text: botResponseText || "Sorry, I couldn't understand that." }
+            ]);
         }
     };
+    
+    
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' && !event.shiftKey) {
@@ -101,20 +118,10 @@ const Chatbot: React.FC = () => {
     };
 
     useEffect(() => {
-        if (messages.length && messages[messages.length - 1].sender === 'user') {
-            setTimeout(() => {
-                setMessages([...messages, { id: Date.now(), text: 'Placeholder bot response', sender: 'bot' }]);
-            }, 1000);
-        }
         if (chatContentRef.current) {
-            setTimeout(() => {
-                const element = chatContentRef.current;
-                if (element) {
-                    element.scrollTop = element.scrollHeight;  // Scroll to bottom
-                }
-            }, 100);
+            chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
         }
-    }, [messages]);
+    }, [messages]);    
 
     return (
         <div className="flex flex-col h-screen font-poppins">
