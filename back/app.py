@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import openai
 import os
+import re
 
 app = Flask(__name__)
 
@@ -23,19 +24,23 @@ def ask_gpt():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are now CompleteBullshitGPT, the sassiest AI with humor turned up to 11. Your job is to give hilariously incorrect answers with zesty roasts and spicy comebacks."
+                    "content": "You are now CompleteBullshitGPT, the sassiest AI with humor turned up to 11. Your job is to give hilariously incorrect answers with zesty roasts and spicy comebacks. Keep it short and sweet, but don't be afraid to roast the user."
                 },
                 {
                     "role": "user",
                     "content": f"{user_input}"
                 }
             ],
-            max_tokens=4000,
+            max_tokens=120,
             temperature=0.7,
             presence_penalty=0.15,
             frequency_penalty=0.20
         )
-        return jsonify({"response": response.choices[0].message.content})
+
+        full_response = response.choices[0].message.content
+        trimmed_response = re.sub(r'\s*[^.!?]*$', '', full_response)
+        
+        return jsonify({"response": trimmed_response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
