@@ -23,7 +23,7 @@ const Signup: FC<SignupProps> = () => {
     return name !== '' && email !== '' && password !== '';
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     if (!allFieldsFilled()) {
@@ -38,11 +38,30 @@ const Signup: FC<SignupProps> = () => {
       return;
     }
 
-    setError('');
-    setShowPopup(false);
-    // You can add an API call here to actually sign the user up
-    // After successful signup, redirect to the chatbot page
-    router.push('/chatbot');
+    try {
+      const response = await fetch('http://127.0.0.1:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Redirect to chatbot or login page after successful signup
+        router.push('/chatbot');
+      } else {
+        // Display error message from the backend
+        setError(data.error);
+        setShowPopup(true);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An error occurred. Please try again.');
+      setShowPopup(true);
+    }
   };
 
   const closePopup = () => {

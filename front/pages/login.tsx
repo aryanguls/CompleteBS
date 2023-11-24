@@ -15,15 +15,34 @@ const Login: FC<LoginProps> = () => {
   const router = useRouter();
 
   const handleLogin = async () => {
-    // Placeholder for login logic
-    // In a real scenario, you would make an API call to the backend to verify the credentials
-    // For this example, we will just simulate a login with a timeout
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true); // Resolve with 'true' to simulate successful login
-      }, 500);
-    });
+    try {
+      const response = await fetch('http://127.0.0.1:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Login is successful
+        return true;
+      } else {
+        // Handle errors, e.g., invalid credentials
+        setError(data.error || 'Login failed. Please try again.');
+        setShowPopup(true);
+        return false;
+      }
+    } catch (error) {
+      console.error('Login Error:', error);
+      setError('An error occurred during login. Please try again.');
+      setShowPopup(true);
+      return false;
+    }
   };
+  
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -46,6 +65,7 @@ const Login: FC<LoginProps> = () => {
     }
   };
 
+  
   const closePopup = () => {
     setShowPopup(false);
     setError('');
