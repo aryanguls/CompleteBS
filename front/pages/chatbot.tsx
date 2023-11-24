@@ -75,11 +75,13 @@ const Chatbot: React.FC = () => {
     
         setIsBotTyping(false);  // Hide typing indicator
     
+        // Replace the typing indicator with the actual bot response
         setMessages(prevMessages => [
-            ...prevMessages, 
+            ...prevMessages.filter(msg => !msg.isTyping), 
             { id: Date.now(), sender: 'bot', text: botResponseText || "Sorry, I couldn't understand that." }
         ]);
     };
+    
     
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputText(event.target.value);
@@ -101,14 +103,13 @@ const Chatbot: React.FC = () => {
     
             setIsBotTyping(false);  // Hide typing indicator
     
+            // Replace the typing indicator with the actual bot response
             setMessages(prevMessages => [
-                ...prevMessages.filter(msg => msg.id !== userMessage.id || msg.sender !== 'bot'), 
+                ...prevMessages.filter(msg => !msg.isTyping), 
                 { id: Date.now(), sender: 'bot', text: botResponseText || "Sorry, I couldn't understand that." }
             ]);
         }
     };
-    
-    
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' && !event.shiftKey) {
@@ -118,10 +119,15 @@ const Chatbot: React.FC = () => {
     };
 
     useEffect(() => {
-        if (chatContentRef.current) {
-            chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
+        if (isBotTyping) {
+            const typingMessage = { id: Date.now(), sender: 'bot', text: '', isTyping: true };
+            setMessages(prevMessages => [...prevMessages, typingMessage]);
+        } else {
+            // Remove the typing message when the bot stops typing
+            setMessages(prevMessages => prevMessages.filter(msg => !msg.isTyping));
         }
-    }, [messages]);    
+    }, [isBotTyping]);
+      
 
     return (
         <div className="flex flex-col h-screen font-poppins">
@@ -173,17 +179,17 @@ const Chatbot: React.FC = () => {
                                     alt={msg.sender} 
                                     className={styles.icon} 
                                 />
-                                <div className={msg.isTyping ? styles.typingBubble : styles.messageBubble}>
-                                    {msg.isTyping ? (
-                                        <div className={styles.typingIndicator}>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                    ) : (
+                                {msg.isTyping ? (
+                                    <div className={styles.typingIndicator}>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                ) : (
+                                    <div className={styles.messageBubble}>
                                         <p>{msg.text}</p>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>

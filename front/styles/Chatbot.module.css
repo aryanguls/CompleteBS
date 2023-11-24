@@ -155,17 +155,11 @@
     text-align: center;
 }
 
-.typingBubble {
-    background-color: #ffac47;
+.typingIndicator {
+    background-color: #ffac47; /* Same as bot's message background */
     border-radius: 10px;
     padding: 10px;
     min-height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.typingIndicator {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,7 +170,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #333; /* Adjust the color to suit your design */
+    background-color: #333; /* Change color to contrast with orange background */
     margin: 0 3px;
     animation: typing 1.4s infinite ease-in-out;
 }
