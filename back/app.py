@@ -9,9 +9,10 @@ import re
 
 app = Flask(__name__)
 
-openai.api_key = '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' #eventually make this env var to hide key
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://aryan:aryan%402003@localhost/user_login'
+openai.api_key = os.environ.get('OPENAI_API_KEY')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 CORS(app)
